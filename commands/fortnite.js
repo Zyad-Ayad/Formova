@@ -55,7 +55,7 @@ const dataError = new Discord.RichEmbed()
     fetch(url, {
         method : "GET",
         headers: {
-            "TRN-Api-Key" : process.env.TRN_api_token
+            "TRN-Api-Key" : process.env.TRN_api_key
         }
 
     })
