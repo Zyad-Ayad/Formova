@@ -2,29 +2,67 @@ const Discord = require("discord.js");
 const fetch = require("node-fetch");
 
 module.exports.run = async (client, message, args) => {
+    
 
-    if (!args[0]) return message.channel.send(":x: ERROR : Please insert full information\n\nExample : ``.fortnite [platform] [Epic-Nickname]``")
+
+//ERRRRORRRRS
+
+const regionError = new Discord.RichEmbed()
+.setColor('#0099ff')
+.setTitle("CMD ERROR")
+.addField(":x: ERROR", "``" + args[0] + "`` is not a valid region")
+.addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
+.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
+.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
+
+
+
+const nameError = new Discord.RichEmbed()
+.setColor('#0099ff')
+.setTitle("CMD ERROR")
+.addField(":x: ERROR", "Formova can't find ``" + args[1] + "`` in ``" + args[0] + "`` region")
+.addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
+.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
+.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
+
+
+
+const dataError = new Discord.RichEmbed()
+.setColor('#0099ff')
+.setTitle("CMD ERROR")
+.addField(":x: ERROR", "Please insert full data")
+.addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
+.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
+.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
+
+
+
+
+
+
+
+    if (!args[0]) return message.channel.send(dataError)
 
     
 
-        if(args[0] !== "pc" && args[0] !== "xbl" && args[0] !== "psn") return message.channel.send(":x: ERROR : ``" + args[0] + "`` is not a vail platform\n\nPlatforms : ``pc`` ``xbl`` ``psn``\n\nExample : ``.fortnite [platform] [Epic-Nickname]``")
+        if(args[0] !== "pc" && args[0] !== "xbl" && args[0] !== "psn") return message.channel.send(regionError)
 
 
-        if (!args[1]) return message.channel.send(":x: ERROR : Please insert your Epic-Nickname\n\nExample : ``.fortnite [platform] [Epic-Nickname]``")
+        if (!args[1]) return message.channel.send(dataError)
 
         let url = "https://api.fortnitetracker.com/v1/profile/" + args[0] + "/" + args[1]
     
     fetch(url, {
         method : "GET",
         headers: {
-            "TRN-Api-Key" : process.env.TRN_api_key
+            "TRN-Api-Key" : process.env.TRN_api_token
         }
 
     })
     .then(res => res.json())
     .then(json => {
         
-        if(!(json.accountId)) return message.channel.send(":x: ERROR : Wrong Epic-Nickname")
+        if(!(json.accountId)) return message.channel.send(nameError)
 
         const stats = new Discord.RichEmbed()
 	.setColor('#0099ff')
