@@ -17,15 +17,6 @@ let apiToken = process.env.riot_api_key;
 
 
 
-    const nameError = new Discord.RichEmbed()
-    .setColor('#0099ff')
-    .setTitle("CMD ERROR")
-    .addField(":x: ERROR", "Formova can't find ``" + message.content.slice(9 + args[0].length) + "`` in ``" + args[0] + "`` region")
-    .addField("Usage", ".league [``Region``] [``Summoner name``]")
-    .addField("Valid regions", "``eune``  ``na`` ``euw`` ``br`` ``kr`` ``jp`` ``tr`` ``ru`` ``oce`` ``las`` ``lan``")
-    .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
-
-
 
     const dataError = new Discord.RichEmbed()
     .setColor('#0099ff')
@@ -85,6 +76,17 @@ let apiToken = process.env.riot_api_key;
 
 
     if (!args[1]) return message.channel.send(dataError)
+
+    
+
+
+    const nameError = new Discord.RichEmbed()
+    .setColor('#0099ff')
+    .setTitle("CMD ERROR")
+    .addField(":x: ERROR", "Formova can't find ``" + message.content.slice(9 + args[0].length) + "`` in ``" + args[0] + "`` region")
+    .addField("Usage", ".league [``Region``] [``Summoner name``]")
+    .addField("Valid regions", "``eune``  ``na`` ``euw`` ``br`` ``kr`` ``jp`` ``tr`` ``ru`` ``oce`` ``las`` ``lan``")
+    .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
     let summoner = await fetch("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" +(message.content.slice(9 + args[0].length).replace(" ", "+")), {
