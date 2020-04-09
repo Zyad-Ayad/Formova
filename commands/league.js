@@ -5,6 +5,8 @@ module.exports.run = async (client, message, args) => {
 
 let apiToken = process.env.riot_api_key;
 
+
+
 //ERRRRORRRRS
 
     const regionError = new Discord.RichEmbed()
