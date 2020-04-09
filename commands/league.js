@@ -100,7 +100,6 @@ let apiToken = process.env.riot_token;
     .then(res => res.json())
 
 
-console.log(summoner)
 
     if(!summoner.id) return message.channel.send(nameError)
 
