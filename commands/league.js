@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 
 module.exports.run = async (client, message, args) => {
 
-let apiToken = process.env.riot_api_key;
+let apiToken = process.env.riot_token;
 
 
 
