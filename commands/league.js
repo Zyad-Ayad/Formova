@@ -1,12 +1,10 @@
+let apiToken = process.env.riot_token;
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
 
 module.exports.run = async (client, message, args) => {
 
 let apiToken = process.env.riot_token;
-
-
-
 //ERRRRORRRRS
 
     const regionError = new Discord.RichEmbed()
@@ -101,6 +99,7 @@ let apiToken = process.env.riot_token;
 
 
 
+
     if(!summoner.id) return message.channel.send(nameError)
 
 
@@ -114,9 +113,22 @@ let apiToken = process.env.riot_token;
     })
     .then(res => res.json())
 
-
+var rank = '';
     
-let rank = ranked[ranked.length - 1]
+    for(let i in ranked){
+
+        let key = ranked[i].queueType
+
+        if (key == 'RANKED_SOLO_5x5') {
+
+            var rank = ranked[i]
+            break;
+
+        }
+
+    }
+
+
 
 if (!rank) {
     var rank1 = "Not Ranked"
@@ -277,18 +289,111 @@ var champ1 = "";
 
     }
 
+
+
+
+
+
+// LAST GAME STATUS --------------------------------------------------
+
+
+
+let matchesList = await fetch("https://"+ region + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + summoner.accountId, {
+    method : "GET",
+    headers : {
+        "X-Riot-Token": apiToken
+    }
+})
+.then(res => res.json())
+
+
+
+let lastMatchId = matchesList.matches[0].gameId;
+
+
+
+let LastMatch = await fetch("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + lastMatchId, {
+    method : "GET",
+    headers : {
+        "X-Riot-Token": apiToken
+    }
+})
+.then(res => res.json())
+
+
+
+var participantId = "";
+
+for(let i in LastMatch.participantIdentities){
+
+    let key = LastMatch.participantIdentities[i].player.accountId
+
+    if (key == summoner.accountId) {
+
+        var participantId = LastMatch.participantIdentities[i].participantId
+        break;
+
+    }
+
+}
+
+
+
+var lastMatchChamp = ''
+
+
+for(let i in champids.data){
+
+    let key = champids.data[i].key
+
+    if (key == LastMatch.participants[participantId - 1].championId) {
+
+        var lastMatchChamp = champids.data[i].name
+        break;
+
+    }
+
+}
+var WLStats
+if ((LastMatch.participants[participantId - 1].stats.win) == false) {
+    var WLStats = "Defeat"
+} else if (LastMatch.participants[participantId - 1].stats.win == true) {
+    var WLStats = "Victory"
+}
+
+
+
+
+
+let score = LastMatch.participants[participantId - 1].stats.kills + "/" + LastMatch.participants[participantId - 1].stats.deaths + "/" + LastMatch.participants[participantId - 1].stats.assists
+
+
+
+let LastGameStats = "**" + WLStats + "** \n**" + summoner.name + "** Player as **" + lastMatchChamp +"**\n Score ``" + score + "``"
+
+
+
+
+
+
+
+
+
+
+
     const stats = new Discord.RichEmbed()
 	.setColor('#0099ff')
 	.setTitle(message.content.slice(9 + args[0].length) + " Stats" )
 	.setThumbnail("http://ddragon.leagueoflegends.com/cdn/" + version + "/img/profileicon/" + summoner.profileIconId + ".png")
     .addField('Rank', rank1, true)
-    .addBlankField(true)
 	.addField('Wins/Losses', rank2, true)
     .addField('Summoner level', summoner.summonerLevel, true)
     .addBlankField()
-    .addField('Most Played Champion', champ1stats)
+    .addField('Most Played Champion', champ1stats, true)
     .addField('Second Played Champions', champ2stats)
     .addField('Third Played Champion', champ3stats)
+    .addBlankField()
+    .addField("Last Match", LastGameStats)
     .addBlankField()
     .addField("Active stats", activeGameStats)
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
