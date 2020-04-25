@@ -356,9 +356,9 @@ for(let i in champids.data){
 }
 var WLStats
 if ((LastMatch.participants[participantId - 1].stats.win) == false) {
-    var WLStats = "Defeat"
+    var WLStats = "Defeat - Loss"
 } else if (LastMatch.participants[participantId - 1].stats.win == true) {
-    var WLStats = "Victory"
+    var WLStats = "Victory - Win"
 }
 
 
@@ -369,7 +369,7 @@ let score = LastMatch.participants[participantId - 1].stats.kills + "/" + LastMa
 
 
 
-let LastGameStats = "**" + WLStats + "** \n**" + summoner.name + "** Player as **" + lastMatchChamp +"**\n Score ``" + score + "``"
+let LastGameStats = "**" + WLStats + "** \n**" + summoner.name + "** Played as **" + lastMatchChamp +"**\n Score ``" + score + "``"
 
 
 
