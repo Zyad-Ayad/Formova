@@ -1,4 +1,3 @@
-let apiToken = process.env.riot_token;
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
 
@@ -312,6 +311,9 @@ let lastMatchId = matchesList.matches[0].gameId;
 
 
 
+
+
+
 let LastMatch = await fetch("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + lastMatchId, {
     method : "GET",
     headers : {
@@ -364,12 +366,11 @@ if ((LastMatch.participants[participantId - 1].stats.win) == false) {
 
 
 
-
 let score = LastMatch.participants[participantId - 1].stats.kills + "/" + LastMatch.participants[participantId - 1].stats.deaths + "/" + LastMatch.participants[participantId - 1].stats.assists
 
 
 
-let LastGameStats = "**" + WLStats + "** \n**" + summoner.name + "** Played as **" + lastMatchChamp +"**\n Score ``" + score + "``"
+let LastGameStats = "Stats : **" + WLStats + "**\nLane -- (role) : **" + matchesList.matches[0].lane + "** -- ( **" + matchesList.matches[0].role + "** ) \nChampion : **" + lastMatchChamp +"**\nScore ``" + score + "``"
 
 
 
