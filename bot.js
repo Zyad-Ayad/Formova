@@ -3,6 +3,27 @@ const client = new Discord.Client();
 const fs = require("fs");
 
 
+
+
+
+
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity(".help");
+});
+
+
+
+client.on("message", message => {
+
+if (message.isMemberMentioned(client.user)) {
+  message.channel.send("Hi, formova is here\n\ndo ``.help`` to start")
+}
+  
+})
+
+
 client.commands = new Discord.Collection();
 const talkedRecently = new Set();
 
@@ -66,22 +87,5 @@ talkedRecently.delete(message.author.id);
 
 
 
-
-
-
-
-
-
-
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
-});
 
 client.login(process.env.bot_token);
