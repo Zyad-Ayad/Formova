@@ -17,8 +17,8 @@ client.on('ready', () => {
 
 client.on("message", message => {
 
-if (message.isMemberMentioned(client.user)) {
-  message.channel.send("Hi, formova is here\n\ndo ``.help`` to start")
+if (message.isMentioned(client.user)) {
+  message.channel.send("Hi, im here\n\ndo ``.help`` to start")
 }
   
 })
