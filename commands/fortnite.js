@@ -10,9 +10,9 @@ module.exports.run = async (client, message, args) => {
 const regionError = new Discord.RichEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
-.addField(":x: ERROR", "``" + args[0] + "`` is not a valid region")
+.addField(":x: ERROR", "``" + args[0] + "`` is not a valid platform")
 .addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
-.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
+.addField("Valid platforms", "``pc`` ``xbl`` ``psn``")
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
@@ -22,7 +22,7 @@ const nameError = new Discord.RichEmbed()
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Formova can't find ``" + args[1] + "`` in ``" + args[0] + "`` region")
 .addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
-.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
+.addField("Valid platform", "``pc`` ``xbl`` ``psn``")
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
@@ -32,7 +32,7 @@ const dataError = new Discord.RichEmbed()
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Please insert full data")
 .addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
-.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
+.addField("Valid platform", "``pc`` ``xbl`` ``psn``")
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
