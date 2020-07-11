@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
+const DBL = require("dblapi.js");
+const dbl = new DBL(process.env.DBL_API_KEY, client);
 
 
 
@@ -22,6 +24,19 @@ if (message.isMentioned(client.user)) {
 }
   
 })
+
+
+
+
+client.on("guildCreate", guild => {
+
+  dbl.postStats(client.guilds.size)
+
+  guild.owner.send("Hello **" + guild.owner.user.username + "**, \n\nYou or someone else just added me to **" + guild.name + "** \n\nto start using me do ``.help`` or mention me \n\nThank you, have a good day \n\nCommands will never work in DM")
+
+
+})
+
 
 
 client.commands = new Discord.Collection();
