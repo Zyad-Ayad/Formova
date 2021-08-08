@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
 let apiToken = process.env.riot_token;
 //ERRRRORRRRS
 
-    const regionError = new Discord.RichEmbed()
+    const regionError = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle("CMD ERROR")
     .addField(":x: ERROR", "``" + args[0] + "`` is not a valid region")
@@ -17,7 +17,7 @@ let apiToken = process.env.riot_token;
 
 
 
-    const dataError = new Discord.RichEmbed()
+    const dataError = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle("CMD ERROR")
     .addField(":x: ERROR", "Please insert full data")
@@ -79,7 +79,7 @@ let apiToken = process.env.riot_token;
     
 
 
-    const nameError = new Discord.RichEmbed()
+    const nameError = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle("CMD ERROR")
     .addField(":x: ERROR", "Formova can't find ``" + message.content.slice(9 + args[0].length) + "`` in ``" + args[0] + "`` region")
@@ -307,6 +307,8 @@ let matchesList = await fetch("https://"+ region + ".api.riotgames.com/lol/match
 
 
 
+
+
 let lastMatchId = matchesList.matches[0].gameId;
 
 
@@ -382,20 +384,17 @@ let LastGameStats = "Stats : **" + WLStats + "**\nLane -- (role) : **" + matches
 
 
 
-    const stats = new Discord.RichEmbed()
+    const stats = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle(message.content.slice(9 + args[0].length) + " Stats" )
 	.setThumbnail("http://ddragon.leagueoflegends.com/cdn/" + version + "/img/profileicon/" + summoner.profileIconId + ".png")
     .addField('Rank', rank1, true)
 	.addField('Wins/Losses', rank2, true)
     .addField('Summoner level', summoner.summonerLevel, true)
-    .addBlankField()
     .addField('Most Played Champion', champ1stats, true)
     .addField('Second Played Champions', champ2stats)
     .addField('Third Played Champion', champ3stats)
-    .addBlankField()
     .addField("Last Match", LastGameStats)
-    .addBlankField()
     .addField("Active stats", activeGameStats)
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
