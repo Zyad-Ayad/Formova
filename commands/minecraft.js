@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
 
 //ERRRRORRRRS
 
-const nameError = new Discord.RichEmbed()
+const nameError = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Formova can't find ``" + args[0] + "`` in mojang files")
@@ -17,7 +17,7 @@ const nameError = new Discord.RichEmbed()
 
 
 
-const dataError = new Discord.RichEmbed()
+const dataError = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Please insert full data")
@@ -65,7 +65,7 @@ for(let i = 1; i <= nameHistory.length; i++) {
 
 
 
-const stats = new Discord.RichEmbed()
+const stats = new Discord.MessageEmbed()
 
 .setColor('#0099ff')
 .setImage("https://mc-heads.net/body/" + uuid.id)
