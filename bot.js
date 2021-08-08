@@ -18,13 +18,11 @@ client.on('ready', () => {
 
 
 client.on("message", message => {
+  if (message.content.includes("@here") || message.content.includes("@everyone")) return;
 
-if (message.isMentioned(client.user)) {
-  message.channel.send("Hi, im here\n\ndo ``.help`` to start")
-}
-  
-})
-
+  if (message.mentions.has(client.user.id)) {
+    message.channel.send("Hi, im here\n\ndo ``.help`` to start")
+  };
 
 
 
