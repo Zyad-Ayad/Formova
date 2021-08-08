@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
 
 //ERRRRORRRRS
 
-const regionError = new Discord.RichEmbed()
+const regionError = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "``" + args[0] + "`` is not a valid platform")
@@ -17,7 +17,7 @@ const regionError = new Discord.RichEmbed()
 
 
 
-const nameError = new Discord.RichEmbed()
+const nameError = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Formova can't find ``" + args[1] + "`` in ``" + args[0] + "`` region")
@@ -27,7 +27,7 @@ const nameError = new Discord.RichEmbed()
 
 
 
-const dataError = new Discord.RichEmbed()
+const dataError = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Please insert full data")
@@ -64,7 +64,7 @@ const dataError = new Discord.RichEmbed()
         
         if(!(json.accountId)) return message.channel.send(nameError)
 
-        const stats = new Discord.RichEmbed()
+        const stats = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle(args[1] + " stats")
 	.setAuthor('fortnite stats', 'https://www.freeiconspng.com/uploads/fortnite-logo-graphic-design-25.png')
