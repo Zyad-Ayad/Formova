@@ -21,14 +21,14 @@ module.exports.run = async (client, message, args) => {
 
             } else {
 
-                var list = list + " \n\n``." + jsfiles[i-1].split(".")[0] + "``"
+                var list = list + "\n\n``." + jsfiles[i-1].split(".")[0] + "``"
 
             }
 
         }
 
 
-		const stats = new Discord.RichEmbed()
+		const stats = new Discord.MessageEmbed()
 
 		.setColor('#0099ff')
 		.setTitle("Formova commands")
