@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
 
 
-    const invite = new Discord.RichEmbed()
+    const invite = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle("Formova Invite Link")
     .addField("Invite URL", "[Formova](https://discord.com/oauth2/authorize?client_id=606872086601793557&scope=bot&permissions=8)")
