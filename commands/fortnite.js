@@ -10,9 +10,9 @@ module.exports.run = async (client, message, args) => {
 const regionError = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle("CMD ERROR")
-.addField(":x: ERROR", "``" + args[0] + "`` is not a valid platform")
+.addField(":x: ERROR", "``" + args[0] + "`` is not a valid region")
 .addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
-.addField("Valid platforms", "``pc`` ``xbl`` ``psn``")
+.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
@@ -22,7 +22,7 @@ const nameError = new Discord.MessageEmbed()
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Formova can't find ``" + args[1] + "`` in ``" + args[0] + "`` region")
 .addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
-.addField("Valid platform", "``pc`` ``xbl`` ``psn``")
+.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
@@ -32,7 +32,7 @@ const dataError = new Discord.MessageEmbed()
 .setTitle("CMD ERROR")
 .addField(":x: ERROR", "Please insert full data")
 .addField("Usage", "``.fortnite [platform] [Epic-Nickname]``")
-.addField("Valid platform", "``pc`` ``xbl`` ``psn``")
+.addField("Valid regions", "``pc`` ``xbl`` ``psn``")
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
 
@@ -41,14 +41,14 @@ const dataError = new Discord.MessageEmbed()
 
 
 
-    if (!args[0]) return message.channel.send(dataError)
+    if (!args[0]) return message.channel.send({embeds: [dataError]})
 
     
 
         if(args[0] !== "pc" && args[0] !== "xbl" && args[0] !== "psn") return message.channel.send(regionError)
 
 
-        if (!args[1]) return message.channel.send(dataError)
+        if (!args[1]) return message.channel.send({embeds: [dataError]})
 
         let url = "https://api.fortnitetracker.com/v1/profile/" + args[0] + "/" + args[1]
     
@@ -62,7 +62,7 @@ const dataError = new Discord.MessageEmbed()
     .then(res => res.json())
     .then(json => {
         
-        if(!(json.accountId)) return message.channel.send(nameError)
+        if(!(json.accountId)) return message.channel.send({embeds: [nameError]})
 
         const stats = new Discord.MessageEmbed()
 	.setColor('#0099ff')
@@ -75,7 +75,7 @@ const dataError = new Discord.MessageEmbed()
     .addField(json.lifeTimeStats[11].key, json.lifeTimeStats[11].value)
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
-message.channel.send(stats);
+message.channel.send({embeds: [stats]});
     });
 
 
