@@ -33,7 +33,7 @@ let apiToken = process.env.riot_token;
     var region = "";
     if (!args[0]) {
 
-        return message.channel.send(dataError)
+        return message.channel.send({embeds: [dataError]})
 
     } else if (args[0] === "euw") {
 
@@ -70,11 +70,11 @@ let apiToken = process.env.riot_token;
     } else if (args[0] === "ru") {
 
         var region = "ru"
-    } else return message.channel.send(regionError);
+    } else return message.channel.send({embeds: [regionError]});
 
 
 
-    if (!args[1]) return message.channel.send(dataError)
+    if (!args[1]) return message.channel.send({embeds: [dataError]})
 
     
 
@@ -99,7 +99,7 @@ let apiToken = process.env.riot_token;
 
 
 
-    if(!summoner.id) return message.channel.send(nameError)
+    if(!summoner.id) return message.channel.send({embeds: [nameError]})
 
 
 
@@ -398,7 +398,7 @@ let LastGameStats = "Stats : **" + WLStats + "**\nLane -- (role) : **" + matches
     .addField("Active stats", activeGameStats)
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
-message.channel.send(stats);
+message.channel.send({embeds: [stats]});
 
 
 }
