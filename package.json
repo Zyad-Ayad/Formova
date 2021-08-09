@@ -1,18 +1,15 @@
 {
-  "name": "formova",
-  "version": "1.0.0",
+  "name": "formova-discordv1.13",
+  "version": "2.0.0",
   "description": "",
   "main": "bot.js",
-  "dependencies": {
-    "dblapi.js": "^2.4.0",
-    "discord.js": "^12.5.3",
-    "mysql": "^2.18.1",
-    "node-fetch": "^2.6.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "start": "node bot.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ZezoTheMaster",
-  "license": "ISC"
+  "author": "Zyad",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.0.1",
+    "node-fetch": "^2.6.1"
+  }
 }
