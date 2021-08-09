@@ -109,4 +109,4 @@ if (message.author.bot) return;
 }
 });
 
-client.login(proccess.env.bot_token);
+client.login(process.env.bot_token);
