@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
     .addField("top.gg URL", "[top.gg/formova](https://top.gg/bot/606872086601793557)")
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
-message.channel.send(invite);
+message.channel.send({embeds: [invite]});
 
 
 
