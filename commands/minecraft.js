@@ -27,7 +27,7 @@ const dataError = new Discord.MessageEmbed()
 
 
 
-if (!args[0]) return message.channel.send(dataError);
+if (!args[0]) return message.channel.send({embeds: [dataError]});
 
 
 
@@ -45,7 +45,7 @@ let uuid = await fetch("https://api.mojang.com/users/profiles/minecraft/" + args
 
   })
 
-if (!uuid) return message.channel.send(nameError)
+if (!uuid) return message.channel.send({embeds: [nameError]})
 
 let nameHistory = await fetch("https://api.mojang.com/user/profiles/" + uuid.id + "/names").then(res => res.json())
 
@@ -73,7 +73,7 @@ const stats = new Discord.MessageEmbed()
 .addField("Names History", names)
 .setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 
-message.channel.send(stats)
+message.channel.send({embeds: [stats]})
 
 
 
