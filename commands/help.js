@@ -28,7 +28,7 @@ module.exports.run = async (client, message, args) => {
         }
 
 
-		const stats = new Discord.MessageEmbed()
+		const commands = new Discord.MessageEmbed()
 
 		.setColor('#0099ff')
 		.setTitle("Formova commands")
@@ -36,7 +36,7 @@ module.exports.run = async (client, message, args) => {
 		.addField("NOTE :", "use the command once to know how to use it")
 		.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 		
-		message.channel.send(stats)
+		message.channel.send({ embeds: [commands] })
 	
 
 
@@ -48,5 +48,5 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-	name: "help",
+	name: "help"
 }
