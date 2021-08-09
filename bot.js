@@ -1,107 +1,132 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const { Client, Collection, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const fs = require("fs");
-const DBL = require("dblapi.js");
-const dbl = new DBL(process.env.DBL_API_KEY, client);
+const fetch = require("node-fetch");
 
 
 
 
 
 
+
+
+//Basic
 
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity(".help");
-});
+    console.log(`Logged in as ${client.user.tag}!`);
+    console.log("formova in " + client.guilds.cache.size + " servers");
+    client.user.setActivity(".help");
+  });
 
 
 
-client.on("message", message => {
-  if (message.content.includes("@here") || message.content.includes("@everyone")) return;
+  var connection = mysql.createConnection({
+    host     : 'sql11.freesqldatabase.com',
+    user     : 'sql11429807',
+    password : 'C43jVi2BN8',
+    database : 'sql11429807'
+  });
+  connection.connect();
 
-  if (message.mentions.has(client.user.id)) {
-    message.channel.send("Hi, im here\n\ndo ``.help`` to start")
-  };
+
 
 
   
-})
-
-
-client.on("guildCreate", guild => {
-
-  dbl.postStats(client.guilds.size)
-
-  guild.owner.send("Hello **" + guild.owner.user.username + "**, \n\nYou or someone else just added me to **" + guild.name + "** \n\nto start using me do ``.help`` or mention me \n\nThank you, have a good day \n\nCommands will never work in DM")
-
-
-})
+  
 
 
 
-client.commands = new Discord.Collection();
-const talkedRecently = new Set();
 
 
-let prefix = (".");
 
 
-fs.readdir("./commands/", (err, files) => {
-    if(err) console.error(err);
 
-    let jsfiles = files.filter(f => f.split(".").pop() === "js");
-    if(jsfiles.length <= 0) {
-        console.log("No commands to load");
-        return;
-    }
 
-    console.log("loading " + jsfiles.length + " commands!");
 
-    jsfiles.forEach((f, i) => {
-        let props = require("./commands/" + f);
-        console.log(i + 1 + " : " + f + " loaded")
-        client.commands.set(props.help.name, props);
+
+
+
+
+
+
+
+
+
+
+  client.on("guildCreate", guild => {
+
+    fetch(`https://top.gg/api/bots/${client.user.id}/stats`, {
+
+      method: 'post',
+      body:    `server_count : ${client.guilds.cache.size}`,
+      headers: { 
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjg3MjA4NjYwMTc5MzU1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTk0NDg2Nzg2fQ.4p0pH9-Y4OFW2WLuPcq2OrcpAHtq80cPYFqFZ2PCgPc"
+    }}
+  )
+    .then(res => res.json())
+    .then(json => console.log(json));
+
+
+
+    guild.members.fetch(guild.ownerId).then(owner =>{
+
+    owner.user.send("Hello **" + owner.user.username + "**, \n\nYou or someone else just added me to **" + guild.name + "** \n\nto start using my commands do ``.help``\n\nThank you, have a good day \n\nCommands will never work in DM")
+
     })
 
-});
+  
+  });
+
+
+
+
+
+  client.commands = new Collection();
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+
+  console.log(file + ": Loaded.")
+  client.commands.set(command.help.name, command);
+}
+
 
 //---------------------------------------------------
+var prefix = (".");
 
 
 
-client.on('message', message => {
+client.on('messageCreate', async message => {
+
+
+  if (message.mentions.has(client.user.id)) {
+
+    if (message.content.includes("@here") || message.content.includes("@everyone")) return;
+
+    message.channel.send(`Hi, im here\n\ndo \`\`${prefix}help\`\` to start`)
+  }
+
+
+
   if (message.channel.type == 'dm' && message.content.startsWith(".help")) return message.channel.send("Don't use bot commands here, use servers instead")
-  if (message.channel.type == 'dm') return;    
-
+  if (message.channel.type == 'dm') return;  
+  
   if(!message.content.startsWith(prefix))return;
 if (message.author.bot) return;    
-if (talkedRecently.has(message.author.id)) {
-  message.channel.send("The next user have to wait at least 3 secounds between using commands : " + message.author + "\nthe cooldown won't work for who have **ADMINSTRATOR** permission")
-   .then(message => {
-   message.delete(3000)
-})
-} else {
 
   let messageArray = message.content.split(" ");
   let command = messageArray[0];
   let args = messageArray.slice(1);
   let cmd = client.commands.get(command.slice(prefix.length));
-  if (cmd) { cmd.run(client, message, args);
+  if (cmd) {
+ 
+    
+  cmd.run(client, message, args, connection);
   console.log("(" + command + ") command just used in " + message.guild.name + " server")
-if (!message.member.hasPermission("ADMINISTRATOR")){
-  talkedRecently.add(message.author.id);
-}
-setTimeout(() => {
-// Removes the user from the set after 5 sec
-talkedRecently.delete(message.author.id);
-}, 3000);
-}
+
 }
 });
 
-
-
-
-
-client.login(process.env.bot_token);
+client.login(proccess.env.bot_toekn);
