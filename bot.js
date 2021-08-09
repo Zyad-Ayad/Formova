@@ -20,16 +20,6 @@ client.on('ready', () => {
 
 
 
-  var connection = mysql.createConnection({
-    host     : 'sql11.freesqldatabase.com',
-    user     : 'sql11429807',
-    password : 'C43jVi2BN8',
-    database : 'sql11429807'
-  });
-  connection.connect();
-
-
-
 
   
   
@@ -55,16 +45,6 @@ client.on('ready', () => {
 
   client.on("guildCreate", guild => {
 
-    fetch(`https://top.gg/api/bots/${client.user.id}/stats`, {
-
-      method: 'post',
-      body:    `server_count : ${client.guilds.cache.size}`,
-      headers: { 
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjg3MjA4NjYwMTc5MzU1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTk0NDg2Nzg2fQ.4p0pH9-Y4OFW2WLuPcq2OrcpAHtq80cPYFqFZ2PCgPc"
-    }}
-  )
-    .then(res => res.json())
-    .then(json => console.log(json));
 
 
 
@@ -123,10 +103,10 @@ if (message.author.bot) return;
   if (cmd) {
  
     
-  cmd.run(client, message, args, connection);
+  cmd.run(client, message, args);
   console.log("(" + command + ") command just used in " + message.guild.name + " server")
 
 }
 });
 
-client.login(proccess.env.bot_toekn);
+client.login(proccess.env.bot_token);
