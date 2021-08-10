@@ -49,11 +49,11 @@ client.on('ready', () => {
     fetch("https://top.gg/api/bots/606872086601793557/stats", {
     method: "POST",
     headers: { "Content-Type": "application/json", 
-    "Authorization": process.env.topgg_token },
+    "Authorization": process.env.topggg_token },
     body: JSON.stringify({ "server_count": client.guilds.cache.size })
   })
  .then(res => res.json()) // expecting a json response
- .then(json => console.log(json));
+ .then(json => console.log("bot sent a bot count update res => " + json));
 
   console.log("Formova added to new server\nserver name : " + guild.name)
 
