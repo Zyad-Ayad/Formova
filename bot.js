@@ -45,7 +45,14 @@ client.on('ready', () => {
   client.on("guildCreate", guild => {
 
 
+    fetch("https://top.gg/api/bots/606872086601793557/stats", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", 
+    "Authorization": process.env.topgg_token },
+    body: JSON.stringify({ "server_count": client.guilds.cache.size })
+  });
 
+  console.log("Formova added to new server\nserver name : " + guild.name)
 
     guild.members.fetch(guild.ownerId).then(owner =>{
 
