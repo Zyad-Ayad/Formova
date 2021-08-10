@@ -53,7 +53,7 @@ client.on('ready', () => {
     body: JSON.stringify({ "server_count": client.guilds.cache.size })
   })
  .then(res => res.json()) // expecting a json response
- .then(json => console.log("bot sent a bot count update res => " + json));
+ .then(json => console.log("Server count updated");
 
     guild.members.fetch(guild.ownerId).then(owner =>{
 
