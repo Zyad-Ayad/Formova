@@ -390,10 +390,12 @@ let LastGameStats = "Stats : **" + WLStats + "**\nLane -- (role) : **" + matches
 	.setThumbnail("http://ddragon.leagueoflegends.com/cdn/" + version + "/img/profileicon/" + summoner.profileIconId + ".png")
     .addField('Rank', rank1, true)
 	.addField('Wins/Losses', rank2, true)
-    .addField('Summoner level', summoner.summonerLevel, true)
+    .addField('Summoner level', summoner.summonerLevel.toString(), true)
+    .addField('\u200B', '\u200B')
     .addField('Most Played Champion', champ1stats, true)
     .addField('Second Played Champions', champ2stats)
     .addField('Third Played Champion', champ3stats)
+    .addField('\u200B', '\u200B')
     .addField("Last Match", LastGameStats)
     .addField("Active stats", activeGameStats)
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
