@@ -10,7 +10,6 @@ module.exports.run = async (client, message, args) => {
     var creatTs = new Date(target.user.createdTimestamp);
     var joinTs = new Date(target.joinedTimestamp)
 
-    console.log(target.presence)
 
 
 
@@ -20,10 +19,10 @@ module.exports.run = async (client, message, args) => {
 	.setTitle("User info")
     .setThumbnail(target.user.avatarURL())
     .addFields(
+        { name: "want to know more about " + target.user.username + "?", value: "\u200B", inline: false },
 		{ name: 'Username#Discriminator', value: target.user.tag, inline: true },
-        { name: "\u200B" , value: "\u200B", inline: true },
         { name: "user ID", value: target.user.id.toString(), inline: true},
-		{ name: 'Joined discord at', value: creatTs.toLocaleString("en-GB",{ hour12: true}), inline: true },
+		{ name: 'Joined discord at', value: creatTs.toLocaleString("en-GB",{ hour12: true}), inline: false },
         { name: "Joined Server at", value: joinTs.toLocaleString("en-GB", { hour12: true}), inline: true},
         { name: "Highest role", value: target.roles.highest.name, inline: true},
 	)
