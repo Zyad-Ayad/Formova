@@ -15,7 +15,7 @@ const fetch = require("node-fetch");
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log("formova in " + client.guilds.cache.size + " servers");
-    client.user.setActivity(".help | [.league] Fixed");
+    client.user.setActivity(".help | New commands!!");
   });
 
 
