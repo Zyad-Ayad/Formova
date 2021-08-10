@@ -55,8 +55,6 @@ client.on('ready', () => {
  .then(res => res.json()) // expecting a json response
  .then(json => console.log("bot sent a bot count update res => " + json));
 
-  console.log("Formova added to new server\nserver name : " + guild.name)
-
     guild.members.fetch(guild.ownerId).then(owner =>{
 
     owner.user.send("Hello **" + owner.user.username + "**, \n\nYou or someone else just added me to **" + guild.name + "** \n\nto start using my commands do ``.help``\n\nThank you, have a good day \n\nCommands will never work in DM")
