@@ -51,7 +51,7 @@ client.on('ready', () => {
     headers: { "Content-Type": "application/json", 
     "Authorization": process.env.topgg_token },
     body: JSON.stringify({ "server_count": client.guilds.cache.size })
-  });
+  }).then(res => res.json).then(json => console.log("Server count updated, \n" + json))
 
   console.log("Formova added to new server\nserver name : " + guild.name)
 
