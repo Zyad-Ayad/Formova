@@ -14,7 +14,7 @@ const fs = require("fs");
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log("formova in " + client.guilds.cache.size + " servers");
-    client.user.setActivity(".help");
+    client.user.setActivity(".help | [.league] Fixed");
   });
 
 
