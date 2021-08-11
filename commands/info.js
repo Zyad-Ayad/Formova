@@ -7,9 +7,15 @@ module.exports.run = async (client, message, args) => {
 
    let binfo = await fetch("https://top.gg/api/bots/606872086601793557", {
     method: "GET",
+    headers: {"Authorization": process.env.topggg_token
+.then(res => res.json())
+
+let votes = await fetch("https://top.gg/api/bots/606872086601793557/votes", {
+    method: "GET",
     headers: {"Authorization": process.env.topggg_token },
 })
 .then(res => res.json())
+
 
 let Author = client.users.cache.get("269132764576481282")
 
@@ -26,6 +32,8 @@ let Author = client.users.cache.get("269132764576481282")
         { name: "Library", value: binfo.lib, inline: true},
         { name: "Client ID", value: binfo.id, inline: true},
 		{ name: 'Author', value: Author.tag, inline: true},
+        { name: "Last vote", value: votes[0].username, inline: true},
+        { name: "Vote link", value: "[Vote](https://top.gg/bot/606872086601793557/vote)", inline: true},
         { name: "Invite link", value: "[invite](https://discord.com/oauth2/authorize?client_id=606872086601793557&scope=bot&permissions=8)", inline: true}
 	)
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
