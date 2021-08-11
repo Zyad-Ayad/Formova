@@ -59,7 +59,7 @@ module.exports.run = async (client, message, args) => {
     .addField("Channels", "Categories :ledger: : "+ catN + "\nText channels :keyboard: : " + textN+"\nVoice channels :loud_sound: : " + voiceN, true)
     .addField("Rules channel", `${rulesChannel}`, true)
     .addField('System channel', `${sysChannel}`, true)
-    .setImage(message.guild.bannerURL)    	
+    .setImage(message.guild.bannerURL())    	
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
     
     message.channel.send({ embeds: [info] })
