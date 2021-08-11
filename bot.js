@@ -43,7 +43,7 @@ client.on('ready', () => {
 
 
 
-  client.on("guildCreate", guild => {
+  client.on("guildCreate", async guild => {
 
 
     fetch("https://top.gg/api/bots/606872086601793557/stats", {
