@@ -57,7 +57,7 @@ module.exports.run = async (client, message, args) => {
     .addField(bigspace, bigspace, true)
     .addField("Members count", message.guild.name + "has" + message.guild.memberCount.toString() + "members", true)
     .addField("Channels", "Categories :ledger: : "+ catN + "\nText channels :keyboard: : " + textN+"\nVoice channels :loud_sound: : " + voiceN, true)
-    .addField("Rules channel", rulesChannel, true)
+    .addField("Rules channel", `<#${rulesChannel}`, true)
     .addField('System channel', `<#${sysChannel.id}>`, true)
     .setImage(message.guild.bannerURL)    	
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
