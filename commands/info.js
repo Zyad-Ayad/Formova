@@ -7,7 +7,8 @@ module.exports.run = async (client, message, args) => {
 
    let binfo = await fetch("https://top.gg/api/bots/606872086601793557", {
     method: "GET",
-    headers: {"Authorization": process.env.topggg_token
+    headers: {"Authorization": process.env.topggg_token },
+})
 .then(res => res.json())
 
 let votes = await fetch("https://top.gg/api/bots/606872086601793557/votes", {
