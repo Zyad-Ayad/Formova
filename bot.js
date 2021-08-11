@@ -55,11 +55,9 @@ client.on('ready', () => {
  .then(res => res.json()) // expecting a json response
  .then(json => console.log("Server count updated"));
 
-    guild.members.fetch(guild.ownerId).then(owner =>{
+  let owner = await guild.fetchOwner().then(owner => owner.user)
+    owner.send("Hello **" + owner.username + "**, \n\nYou or someone else just added me to **" + guild.name + "** \n\nto start using my commands do ``.help``\n\nThank you, have a good day \n\nCommands will never work in DM")
 
-    owner.user.send("Hello **" + owner.user.username + "**, \n\nYou or someone else just added me to **" + guild.name + "** \n\nto start using my commands do ``.help``\n\nThank you, have a good day \n\nCommands will never work in DM")
-
-    })
 
   
   });
