@@ -9,6 +9,10 @@ module.exports.run = async (client, message, args) => {
 
     var creatTs = new Date(message.guild.createdTimestamp);
 
+    creatTs.toLocaleString("en-GB",{ hour12: true})
+
+    let time = (creatTs.toLocaleString("en-GB",{ hour12: true})).split(",")[0]
+
     let owner = await message.guild.fetchOwner().then(owner => owner.user)
 
     let channels1 = await message.guild.channels.fetch()
@@ -44,6 +48,9 @@ module.exports.run = async (client, message, args) => {
 
      let bigspace = "\u200B\u200B\u200B\u200B\u200B\u200B\u200B\u200B"
 
+     let emo = await message.guild.emojis.fetch().then(emojis => emojis.size)
+
+
     const info = new Discord.MessageEmbed()
 
     .setColor('#0099ff')
@@ -52,17 +59,24 @@ module.exports.run = async (client, message, args) => {
     .addField("Name", message.guild.name, true)
     .addField(bigspace, bigspace, true)
         //{ name: "\u200B" , value: "\u200B", inline: true },
-    .addField("Owner", owner.tag, true)
-    .addField("Created At", creatTs.toLocaleString("en-GB",{ hour12: true}), true)
+    .addField("Owner", ":crown:" + owner.tag, true)
+    .addField("Created At", ":calendar_spiral:" + time, true)
     .addField(bigspace, bigspace, true)
-    .addField("Members count", message.guild.name + "has" + message.guild.memberCount.toString() + "members", true)
+    .addField("Members count", "This server has ``" + message.guild.memberCount.toString() + "`` members", true)
     .addField("Channels", "Categories :ledger: : "+ catN + "\nText channels :keyboard: : " + textN+"\nVoice channels :loud_sound: : " + voiceN, true)
     .addField("Rules channel", `${rulesChannel}`, true)
     .addField('System channel', `${sysChannel}`, true)
-    .setImage(message.guild.bannerURL())    	
+    .addField("Server Emojis", ":grin: ``" + emo.toString() + "``", true)
+    .addField("Features", `-${message.guild.features}`)
+    .setImage(message.guild.bannerURL(size = "2048"))
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
     
     message.channel.send({ embeds: [info] })
+
+    
+
+
+
 
 
 
