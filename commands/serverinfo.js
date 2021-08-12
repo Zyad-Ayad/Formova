@@ -68,7 +68,7 @@ module.exports.run = async (client, message, args) => {
     .addField('System channel', `${sysChannel}`, true)
     .addField("Server Emojis", ":grin: ``" + emo.toString() + "``", true)
     .addField("Features", `-${message.guild.features}`)
-    .setImage(message.guild.bannerURL(size = "2048"))
+    .setImage(message.guild.bannerURL(size = 2048))
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
     
     message.channel.send({ embeds: [info] })
