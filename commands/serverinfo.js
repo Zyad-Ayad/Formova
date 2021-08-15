@@ -50,6 +50,19 @@ module.exports.run = async (client, message, args) => {
 
      let emo = await message.guild.emojis.fetch().then(emojis => emojis.size)
 
+     var features = "";
+
+     if (message.guild.features.length < 1) {
+
+         features = "No features!"
+
+     } else {
+
+        for (let i in features) {
+
+            features = features + " -- " + features[i]
+        }
+     }
 
     const info = new Discord.MessageEmbed()
 
@@ -67,7 +80,7 @@ module.exports.run = async (client, message, args) => {
     .addField("Rules channel", `${rulesChannel}`, true)
     .addField('System channel', `${sysChannel}`, true)
     .addField("Server Emojis", ":grin: ``" + emo.toString() + "``", true)
-    //.addField("Features", `-${message.guild.features}`)
+    .addField("Features", `\`\`-${features}\`\``)
     .setImage(message.guild.bannerURL({size: 2048}))
 	.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
     
