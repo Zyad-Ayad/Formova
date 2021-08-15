@@ -60,7 +60,7 @@ module.exports.run = async (client, message, args) => {
 
         for (let i in features) {
 
-            features = features + " -- " + features[i]
+            console.log(message.guild.features)
         }
      }
 
