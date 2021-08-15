@@ -52,17 +52,7 @@ module.exports.run = async (client, message, args) => {
 
      var features = "";
 
-     if (message.guild.features.length < 1) {
-
-         features = "No features!"
-
-     } else {
-
-        for (let i in features) {
-
             console.log(message.guild.features)
-        }
-     }
 
     const info = new Discord.MessageEmbed()
 
