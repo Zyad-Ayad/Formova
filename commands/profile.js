@@ -37,5 +37,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: "profile"
+    name: "profile",
+    help: "Users informations",
+    usage: ".profile {mention user}"
 }
