@@ -406,5 +406,7 @@ message.channel.send({embeds: [stats]});
 }
 
 module.exports.help = {
-    name: "league"
+    name: "league",
+    help: "League OF Legends account stats",
+    usage: ".league [Region] [Summoner name]"
 }
