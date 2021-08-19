@@ -43,7 +43,8 @@ let Author = client.users.cache.get("269132764576481282")
 
 
 
-}
 module.exports.help = {
-    name: "info"
+    name: "info",
+    help: "Bot information",
+    usage: ".info"
 }
