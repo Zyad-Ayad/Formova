@@ -82,5 +82,7 @@ message.channel.send({embeds: [stats]});
 }
 
 module.exports.help = {
-    name: "fortnite"
+    name: "fortnite",
+    help: "Get fortnite user's stats",
+    usage: ".fortnite [platform] [Epic-Nickname]"
 }
