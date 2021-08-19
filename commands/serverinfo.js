@@ -104,5 +104,6 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
     name: "serverinfo",
-    help: "get current server info"
+    help: "get current server info",
+    usage: ".serverinfo"
 }
