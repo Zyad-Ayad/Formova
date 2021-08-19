@@ -88,5 +88,7 @@ message.channel.send({embeds: [stats]})
 }
 
 module.exports.help = {
-    name: "minecraft"
+    name: "minecraft",
+    help: "Minecraft account skin & names history",
+    usage: ".minecraft [username]"
 }
