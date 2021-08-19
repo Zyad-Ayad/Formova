@@ -42,6 +42,7 @@ let Author = client.users.cache.get("269132764576481282")
     message.channel.send({ embeds: [info] })
 
 
+}
 
 module.exports.help = {
     name: "info",
