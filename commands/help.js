@@ -4,36 +4,38 @@ const fs = require("fs");
 
 module.exports.run = async (client, message, args) => {
 
-
-
-	fs.readdir("./commands/", (err, files) => {
-		if(err) console.error(err);
-	
-		let jsfiles = files.filter(f => f.split(".").pop() === "js");
-
         var list = "";
-        
-		for (let i = 1; i <= jsfiles.length; i++) {
+
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./${file}`);
 
             if (!list) {
 
-                var list = "``." + jsfiles[i-1].split(".")[0] + "``"
+                var list = `\`\`${command.help.name}\`\`  :  ${command.help.help}\nUsage : ${command.help.usage}`
 
             } else {
 
-                var list = list + "\n\n``." + jsfiles[i-1].split(".")[0] + "``"
+                var list = list + `\n\n\`\`${command.help.name}\`\`  :  ${command.help.help}\nUsage : ${command.help.usage}`
 
             }
 
-        }
+}
+
+
+
+
+
 
 
 		const commands = new Discord.MessageEmbed()
 
 		.setColor('#0099ff')
-		.setTitle("Formova commands")
+		.setTitle("Formova commands | prefix is `.`")
 		.addField("Commands list", list)
-		.addField("NOTE :", "use the command once to know how to use it")
+		.addField("NOTE :", "`[]` is required & `{}` is optinal")
 		.setFooter('Formova', 'https://g.top4top.io/p_14877vn8y1.jpg');
 		
 		message.channel.send({ embeds: [commands] })
@@ -41,12 +43,14 @@ module.exports.run = async (client, message, args) => {
 
 
 	
-    })
+    
 
 
 
 }
 
 module.exports.help = {
-	name: "help"
+	name: "help",
+	help: "Bot commands",
+	usage: ".help"
 }
