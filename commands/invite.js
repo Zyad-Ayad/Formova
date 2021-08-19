@@ -18,5 +18,7 @@ message.channel.send({embeds: [invite]});
 
 
 module.exports.help = {
-    name: "invite"
+    name: "invite",
+    help: "Bot invite link",
+    usage: ".invite"
 }
