@@ -90,12 +90,13 @@ client.on('messageCreate', async message => {
 
     if (message.content.includes("@here") || message.content.includes("@everyone")) return;
 
+    if (!message.channel.permissionsFor(client.user).has("SEND_MESSAGES")) return;
+
     message.channel.send(`Hi, im here\n\ndo \`\`${prefix}help\`\` to start`)
   }
 
 
 
-  if (message.channel.type == 'dm' && message.content.startsWith(".help")) return message.channel.send("Don't use bot commands here, use servers instead")
   if (message.channel.type == 'dm') return;  
   
   if(!message.content.startsWith(prefix))return;
@@ -107,11 +108,13 @@ if (message.author.bot) return;
   let cmd = client.commands.get(command.slice(prefix.length));
   if (cmd) {
  
-    
+  if (!message.channel.permissionsFor(client.user).has("SEND_MESSAGES")) return message.author.send("I don't have `SEND_MESSAGES` permission in " + message.channel.name);
+
   cmd.run(client, message, args);
   console.log("(" + command + ") command just used in " + message.guild.name + " server")
 
 }
 });
+
 
 client.login(process.env.bot_token);
