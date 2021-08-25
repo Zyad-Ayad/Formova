@@ -84,7 +84,8 @@ var prefix = (".");
 
 
 client.on('messageCreate', async message => {
-
+if (message.author.bot) return;    
+  if (message.channel.type == 'dm') return;  
 
   if (message.mentions.has(client.user.id)) {
 
@@ -97,10 +98,9 @@ client.on('messageCreate', async message => {
 
 
 
-  if (message.channel.type == 'dm') return;  
   
   if(!message.content.startsWith(prefix))return;
-if (message.author.bot) return;    
+
 
   let messageArray = message.content.split(" ");
   let command = messageArray[0];
